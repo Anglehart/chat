@@ -10,11 +10,8 @@ import (
 )
 
 func main() {
-	// Роутинг
-	http.HandleFunc("/double", utils.EnableCORS(handlers.HandleDouble))
-	http.HandleFunc("/half", utils.EnableCORS(handlers.HandleHalf))
+	http.HandleFunc("/save-message", utils.EnableCORS(handlers.HandleSaveMessage))
 
-	// Запуск сервера
 	fmt.Println("Сервер запущен на http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

@@ -8,20 +8,20 @@ import (
 	"be/utils"
 )
 
-func HandleHalf(w http.ResponseWriter, r *http.Request) {
+func HandleSaveMessage(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		utils.SendJSONError(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
 		return
 	}
 
 	var req struct {
-		Number int `json:"number"`
+		Message string `json:"message"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		utils.SendJSONError(w, "Ошибка парсинга JSON", http.StatusBadRequest)
 		return
 	}
 
-	result := service.Half(req.Number)
-	utils.SendJSONResponse(w, map[string]int{"result": result})
+	result := service.SaveMessage(req.Message)
+	utils.SendJSONResponse(w, map[string]string{"result": result})
 }
