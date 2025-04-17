@@ -1,7 +1,10 @@
 package storage
 
-import "context"
+import (
+	"be/models"
+	"context"
+)
 
-type MessageRepo interface {
-	SaveMessage(ctx context.Context, msg string) error
+type MessageRepository interface {
+	SaveMessage(ctx context.Context, msg models.Message) error
 }
