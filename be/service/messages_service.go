@@ -31,3 +31,7 @@ func (s *MessageService) SaveMessage(ctx context.Context, text string) (*models.
 
 	return &msg, nil
 }
+
+func (s *MessageService) GetMessages(ctx context.Context) ([]models.Message, error) {
+	return s.storage.GetMessages(ctx)
+}

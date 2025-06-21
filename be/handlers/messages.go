@@ -35,3 +35,16 @@ func HandleSaveMessage(w http.ResponseWriter, r *http.Request) {
 
 	utils.SendJSONResponse(w, map[string]string{"saved": savedMsg.Text})
 }
+
+func HandleGetMessages(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	// Вызываем сервис с контекстом
+	resp, err := msgService.GetMessages(ctx)
+	if err != nil {
+		utils.SendJSONError(w, "Ошибка сохранения", http.StatusInternalServerError)
+		return
+	}
+
+	utils.SendJSONResponse(w, resp)
+}

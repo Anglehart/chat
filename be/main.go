@@ -37,6 +37,7 @@ func main() {
 
 	// 4. Настройка роутинга
 	http.HandleFunc("/save-message", utils.EnableCORS(handlers.HandleSaveMessage))
+	http.HandleFunc("/get-messages", utils.EnableCORS(handlers.HandleGetMessages))
 
 	// 5. Запуск сервера
 	fmt.Println("Сервер запущен на http://localhost:8080")
