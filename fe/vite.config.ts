@@ -13,4 +13,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    proxy: {
+      '/get-messages': 'http://localhost:8080'
+    },
+    host: '0.0.0.0', // Разрешает доступ с любых IP в локальной сети
+    allowedHosts: [
+      'boriskobzarev.tplinkdns.com' // Ваш новый домен
+    ]
+  }
 })

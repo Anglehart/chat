@@ -26,7 +26,7 @@ const result = ref<{result: string}>({result: ""})
 
 
 const getMessages = async () => {
-  const resp = await fetch("http://localhost:8080/get-messages", {
+  const resp = await fetch("/get-messages", {
     headers: {
       'Content-Type': 'application/json', 
     }
@@ -93,6 +93,7 @@ const onSendMessage = () => {
 
 <template>
   <div class="messager">
+    <p class="messager__status">Статус: {{ status }}</p>
     <ul class="message__list">
       <li v-for="(msg, index) in filteredMessages" :key="index">
         <div class="message__baloon">
@@ -112,13 +113,18 @@ const onSendMessage = () => {
     >
       Отправить сообщение
     </button>
-    <p>Статус: {{ status }}</p>
   </div>
 </template>
 <style>
   .messager {
     max-width: 600px;
     margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .messager__status {
+    margin-bottom: 10px;
+    text-align: right;
   }
 
   .message__wrap {
